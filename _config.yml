@@ -198,6 +198,11 @@ keep_files:
   - .git
   - .svn
 encoding: "utf-8"
+
+collections:
+  restaurants:
+    output: true
+    permalink: /restaurants/:name/
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 
@@ -325,3 +330,10 @@ defaults:
       comments: # true
       share: true
       related: true
+  - scope:
+      path: "_restaurants"
+      type: restaurants
+    values:
+      layout: restaurant
+      author_profile: false
+      share: false

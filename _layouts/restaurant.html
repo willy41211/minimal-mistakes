@@ -1,0 +1,76 @@
+---
+layout: single
+---
+
+<article class="page">
+  <header class="page__header">
+    <h1 class="page__title">{{ page.title }}</h1>
+    {% if page.short_description %}
+      <p class="page__lead">{{ page.short_description }}</p>
+    {% endif %}
+    {% if page.order_links %}
+      <div class="btn-group">
+        {% for link in page.order_links %}
+          <a class="btn btn--primary" href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label | default: "立即訂購" }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="restaurant__meta">
+    <dl class="dl-inline">
+      {% if page.address %}
+        <dt>地址</dt>
+        <dd>{{ page.address }}</dd>
+      {% endif %}
+      {% if page.phone %}
+        <dt>電話</dt>
+        <dd><a href="tel:{{ page.phone }}">{{ page.phone }}</a></dd>
+      {% endif %}
+      {% if page.tags %}
+        <dt>標籤</dt>
+        <dd>
+          {% for tag in page.tags %}
+            <span class="label">{{ tag }}</span>{% unless forloop.last %} {% endunless %}
+          {% endfor %}
+        </dd>
+      {% endif %}
+      {% if page.social %}
+        {% if page.social.facebook %}
+          <dt>Facebook</dt>
+          <dd><a href="{{ page.social.facebook }}" target="_blank" rel="noopener">粉絲專頁</a></dd>
+        {% endif %}
+      {% endif %}
+    </dl>
+  </div>
+
+  <div class="restaurant__content">
+    {{ content | markdownify }}
+  </div>
+
+  {% if page.highlights %}
+    <section>
+      <h2>亮點</h2>
+      <ul>
+        {% for highlight in page.highlights %}
+          <li>{{ highlight }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if page.news %}
+    <section>
+      <h2>媒體報導</h2>
+      <ul>
+        {% for article in page.news %}
+          <li>
+            <a href="{{ article.url }}" target="_blank" rel="noopener">{{ article.title }}</a>
+            {% if article.source %} <span class="text-small">— {{ article.source }}</span>{% endif %}
+            {% if article.date %} <span class="text-small">（{{ article.date }}）</span>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+</article>
