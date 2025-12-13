@@ -24,6 +24,8 @@ main:
     url: /docs/quick-start-guide/
   - title: "About"
     url: /about/
+  - title: "相簿"
+    url: /photo-album/
   - title: "Sample Posts"
     url: /year-archive/
   - title: "Sample Collections"
